@@ -177,7 +177,6 @@ body::after {
     border-radius: 22px; padding: 2rem 1.75rem 2.25rem;
     display: flex; flex-direction: column; position: relative; overflow: hidden;
     transition: border-color .25s, transform .25s;
-    height: 100%; min-height: 100%; align-self: stretch;
 }
 .cmp-card:hover { border-color: rgba(255,255,255,.13); transform: translateY(-3px); }
 .cmp-card--active {
@@ -209,9 +208,9 @@ body::after {
 .cmp-unit { font-size: .6rem; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.2); font-family: 'JetBrains Mono', monospace; margin-bottom: 1.25rem; }
 .cmp-card--active .cmp-unit { color: rgba(34,197,94,.6); }
 .cmp-name { font-size: .92rem; font-weight: 600; margin-bottom: .45rem; letter-spacing: -.01em; }
-.cmp-desc { font-size: .79rem; color: rgba(255,255,255,.36); line-height: 1.62; margin-bottom: 1.75rem; flex: 1; min-height: 0; }
+.cmp-desc { font-size: .79rem; color: rgba(255,255,255,.36); line-height: 1.62; margin-bottom: 1.75rem; flex: 1; }
 .cmp-card--active .cmp-desc { color: rgba(255,255,255,.52); }
-.cmp-bar { height: 3px; background: rgba(255,255,255,.06); border-radius: 99px; margin-top: auto; overflow: hidden; }
+.cmp-bar { height: 3px; background: rgba(255,255,255,.06); border-radius: 99px; overflow: hidden; }
 .cmp-bar-fill { height: 100%; border-radius: 99px; background: rgba(255,255,255,.14); transition: width 1.2s cubic-bezier(.22,1,.36,1); }
 .cmp-card--active .cmp-bar-fill { background: linear-gradient(to right, #16a34a, #4ade80); box-shadow: 0 0 8px rgba(34,197,94,.4); }
 
@@ -219,11 +218,12 @@ body::after {
    BENEFIT CARDS GRID
 ══════════════════════════════ */
 .bnf-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: start;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: stretch;
 }
 .bnf-card {
     background: rgba(255,255,255,.024); border: 1px solid rgba(255,255,255,.07);
     border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
     transition: border-color .25s, background .25s, transform .22s;
 }
 .bnf-card::before {
@@ -781,7 +781,8 @@ ScrollTrigger.create({ trigger: '#bnf-grid', start: 'top 78%', once: true, onEnt
     var fill = document.getElementById('tl-fill');
     var dots = [0,1,2,3,4].map(function(i){ return document.getElementById('tl'+i); });
     gsap.from('.tl-card', { opacity: 0, y: 18, stagger: 0.1, duration: 0.65, ease: 'power2.out',
-        scrollTrigger: { trigger: '#tl-wrap', start: 'top 78%' }
+        immediateRender: false,
+        scrollTrigger: { trigger: '#tl-wrap', start: 'top 78%', once: true }
     });
     ScrollTrigger.create({ trigger: '#tl-wrap', start: 'top 58%', end: 'bottom 42%', scrub: 1,
         onUpdate: function(self){
