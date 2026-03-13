@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Elektro Charge â€” Carregamento ultrarrápido para veículos elétricos em Pinhais, PR. DC Fast Charging 60 kW, disponível 24h." />
+    <meta name="theme-color" content="#000000" />
+    <meta property="og:title" content="Elektro Charge â€” O futuro da mobilidade elétrica" />
+    <meta property="og:description" content="Carregamento ultrarrápido para veículos elétricos. DC Fast Charging 60 kW, disponível 24h em Pinhais, PR." />
+    <meta property="og:type" content="website" />
+    <title>Elektro Charge â€” O futuro da mobilidade elétrica</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+    /* -- Melhorias de visibilidade -- */
+    .hero-title        { text-shadow: none; }
+    .hero-subtitle     { color: #fff !important; font-size: 1.15rem !important; }
+    .hero-desc         { color: rgba(255,255,255,0.90) !important; font-size: 1rem !important; line-height: 1.8 !important; }
+    .bsec-card-title   { color: #fff !important; }
+    .bsec-card-body    { color: rgba(255,255,255,0.80) !important; }
+    .price-step-title  { color: #fff !important; }
+    .price-step-body   { color: rgba(255,255,255,0.82) !important; }
+    .bn-card-title     { color: #fff !important; }
+    .bn-card-desc      { color: rgba(255,255,255,0.80) !important; }
+    .glow-sub          { color: rgba(255,255,255,0.80) !important; }
+    .bsec-split-body   { color: rgba(255,255,255,0.80) !important; }
+    .como-step-title   { color: #fff !important; }
+    .como-step-body    { color: rgba(255,255,255,0.80) !important; }
+    p, li, span, div   { -webkit-font-smoothing: antialiased; }
+    </style></head>
+<body>
+
+    <!-- Barra de progresso de scroll -->
+    <div id="scroll-progress"></div>
+
+    <!-- Cursor customizado -->
+    <div id="custom-cursor">
+        <div class="c-ring"></div>
+        <div class="c-dot"></div>
+    </div>
+
+    <!-- Cursor glow global -->
+    <div id="cursor-glow"></div>
+
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">
+            <div class="navbar-logo-icon"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+            <span class="navbar-logo-text">Elektro<span>.Charge</span></span>
+        </a>
+        <div class="navbar-links">
+            <a href="index.html">Início</a><a href="beneficios.html?v=2">Benefícios</a>
+            
+            <a href="tecnologia.html">Tecnologia</a><a href="sobre.html">Sobre</a>
+        </div>
+        <a href="https://maps.app.goo.gl/rKWYBJzKLUBgqaQp8" target="_blank" rel="noopener" class="navbar-live-btn"><span class="nlb-dot"></span><span class="nlb-text">Disponível Agora</span></a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section" id="hero-trigger">
+        <div class="hero-sticky">
+            <div class="hero-video-wrap" id="video-wrapper">
+                <video id="hero-video" muted playsinline preload="auto">
+                    <source src="assets/video/video_scrub.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <!-- Partículas elétricas flutuantes -->
+            <div class="hero-particles" id="hero-particles"></div>
+
+            <div class="hero-content">
+                <div class="hero-badge" id="el-badge" style="box-shadow:0 0 0 1px rgba(34,197,94,.18),0 0 24px rgba(34,197,94,.08);">
+                    <div class="hero-badge-dot"></div>
+                    <span class="hero-badge-text">Inovação em Mobilidade</span>
+                </div>
+                <h1 class="hero-title" id="el-title">
+                    O futuro da<br><span class="green">mobilidade elétrica.</span>
+                </h1>
+                <p class="hero-subtitle" id="el-subtitle">Infraestrutura inteligente para veículos elétricos.</p>
+                <p class="hero-desc" id="el-desc">A Elektro Charge conecta cidades a nova geração de mobilidade elétrica com eletropostos rápidos, eficientes e preparados para o crescimento do mercado.</p>
+                <div class="hero-cta" id="el-cta">
+                    <a href="https://maps.app.goo.gl/rKWYBJzKLUBgqaQp8" target="_blank" rel="noopener" class="btn-primary">Conhecer o eletroposto <iconify-icon icon="solar:round-arrow-right-bold"></iconify-icon></a>
+                    <button class="btn-secondary"><iconify-icon icon="solar:play-circle-bold"></iconify-icon> Ver como funciona</button>
+                </div>
+            </div>
+            <div class="scroll-indicator" id="el-scroll">
+                <span class="scroll-indicator-text">Scroll</span>
+                <div class="scroll-indicator-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-divider">
+        <div class="marquee-track">
+            <div class="marquee-item">
+                <span class="marquee-text">AC / DC Charge</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">60 kW</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Carga Rapida</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Energia Limpa</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">24 horas</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Elektro Charge</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Gastronomia</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Comercio</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Segurança</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Zero CO2</span><span class="marquee-sep">&#x26A1;</span>
+            </div>
+            <div class="marquee-item">
+                <span class="marquee-text">AC / DC Charge</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">60 kW</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Carga Rapida</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Energia Limpa</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">24 horas</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Elektro Charge</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Gastronomia</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Comercio</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Segurança</span><span class="marquee-sep">&#x26A1;</span>
+                <span class="marquee-text">Zero CO2</span><span class="marquee-sep">&#x26A1;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEGUNDA DOBRA -->
+    <section class="benefits-section" id="beneficios" style="position:relative;overflow:hidden;">
+        <!-- aurora-index-v2 --><div class="s-aurora s-aurora-green" style="position:absolute;width:700px;height:500px;top:-10%;left:-8%;z-index:0;"></div><div class="s-aurora s-aurora-green2" style="position:absolute;width:500px;height:400px;bottom:5%;right:5%;z-index:0;"></div><div class="s-dot-grid" style="opacity:.55;"></div>
+        <div class="bsec-container">
+
+            <!-- Header -->
+            <div class="bsec-header" id="bsec-header">
+                <div class="bsec-eyebrow">
+                    <iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon>
+                    <span class="scramble-text">Experiencia Completa</span>
+                </div>
+                <h2 class="bsec-title">
+                    Recarregar<br>
+                    <span class="bsec-title-muted">é só o começo.</span>
+                </h2>
+                <p class="bsec-subtitle">
+                    Enquanto o carro carrega, você aproveita tudo ao redor.
+                    Gastronomia, comercio e conforto — no mesmo endereco.
+                </p>
+            </div>
+
+            <!-- Painel cinematografico: imagem full-width + stats flutuando -->
+            <div class="bsec-cinema" id="bsec-visual-split">
+
+                <!-- Placeholder enquanto a imagem carrega -->
+                <div class="bsec-visual-placeholder" id="bsec-placeholder">
+                    <iconify-icon icon="solar:bolt-square-bold-duotone" class="bsec-visual-placeholder-icon"></iconify-icon>
+                    <span class="bsec-visual-placeholder-text">Elektro Charge — Fachada</span>
+                </div>
+
+                <!-- Imagem full-bleed -->
+                <img class="bsec-cinema-img-full" id="bsec-visual" src="assets/images/fachada.png" alt="Eletroposto Elektro Charge" onload="document.getElementById('bsec-placeholder').style.display='none'">
+
+                <!-- Overlay gradiente -->
+                <div class="bsec-cinema-overlay"></div>
+
+                <!-- Badge: operacional -->
+                <div class="bsec-visual-live" style="z-index:6;">
+                    <div class="bsec-live-dot"></div>
+                    <span class="bsec-live-label">Operacional agora</span>
+                </div>
+
+                <!-- Badge: potência -->
+                <div class="bsec-visual-badge" style="z-index:6;">
+                    <iconify-icon icon="solar:bolt-bold-duotone" class="bsec-visual-badge-icon"></iconify-icon>
+                    <div>
+                        <div class="bsec-visual-badge-val">60 kW</div>
+                        <div class="bsec-visual-badge-sub">Potencia de recarga</div>
+                    </div>
+                </div>
+
+                <!-- Card de stats flutuando na direita -->
+                <div class="bsec-cinema-stats" id="bsec-stats-col">
+                    <div class="bsec-stats-col-label">Numeros que importam</div>
+                    <div class="bsec-stats-bar" id="bsec-stats">
+                        <div class="bsec-stat">
+                            <div class="bsec-stat-num green"><span id="stat-speed">0</span><span class="unit"> kW</span></div>
+                            <div class="bsec-stat-label">Potencia de recarga — rapida o suficiente para nao te prender</div>
+                            <div class="bsec-stat-bar-track"><div class="bsec-stat-bar-fill" data-width="60%"></div></div>
+                        </div>
+                        <div class="bsec-stat">
+                            <div class="bsec-stat-num"><span id="stat-time">0</span><span class="unit"> min</span></div>
+                            <div class="bsec-stat-label">De 20% a 80% de bateria — tempo que vira uma pausa bem aproveitada</div>
+                            <div class="bsec-stat-bar-track"><div class="bsec-stat-bar-fill" data-width="45%"></div></div>
+                        </div>
+                        <div class="bsec-stat">
+                            <div class="bsec-stat-num green"><span id="stat-energy">0</span><span class="unit">%</span></div>
+                            <div class="bsec-stat-label">Energia de fonte renovavel — zero emissao de CO2 na sua recarga</div>
+                            <div class="bsec-stat-bar-track"><div class="bsec-stat-bar-fill" data-width="100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Cards — 3 colunas -->
+            <div class="bsec-cards-section" id="bsec-cards-section">
+                <div class="bsec-cards-label">Por que escolher o Elektro Charge</div>
+                <div class="bsec-cards" id="bsec-cards">
+
+                    <div class="bsec-card" id="bc-0">
+                        <div class="bsec-card-sweep"></div>
+                        <div class="bsec-card-icon"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+                        <h3 class="bsec-card-title">Carga Rápida,<br>Sem Complicação</h3>
+                        <p class="bsec-card-body">Chegou, conectou, resolveu. <strong>60 kW de potência</strong> garantem de 20% a 80% em poucos minutos. Rápido o suficiente para ser uma pausa, não uma espera.</p>
+                    </div>
+
+                    <div class="bsec-card" id="bc-1">
+                        <div class="bsec-card-sweep"></div>
+                        <div class="bsec-card-icon"><iconify-icon icon="solar:cup-hot-bold-duotone"></iconify-icon></div>
+                        <h3 class="bsec-card-title">Gastronomia<br>Ao Lado</h3>
+                        <p class="bsec-card-body">Padarias, restaurantes e cafes especiais a passos do eletroposto. <strong>Recarregue o carro enquanto recarrega as energias</strong> com uma refeicao de verdade.</p>
+                    </div>
+
+                    <div class="bsec-card" id="bc-2">
+                        <div class="bsec-card-sweep"></div>
+                        <div class="bsec-card-icon"><iconify-icon icon="solar:shield-check-bold-duotone"></iconify-icon></div>
+                        <h3 class="bsec-card-title">Segurança<br>e Conforto 24h</h3>
+                        <p class="bsec-card-body">Iluminação premium, câmeras e equipe presente a qualquer hora. <strong>Chegue cedo ou tarde</strong> — você está sempre em boas mãos. Tranquilidade que não tem preço.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Split — Tecnologia | App Mock -->
+            <div class="bsec-split" id="bsec-split">
+
+                <!-- Esquerda — texto -->
+                <div class="bsec-split-left" id="bsec-split-left">
+                    <div class="bsec-split-pill">
+                        <span class="bsec-split-pill-dot"></span>
+                        Tecnologia de Ponta
+                    </div>
+                    <h2 class="bsec-split-title">
+                        Controle total<br>
+                        <em>na palma da mao.</em>
+                    </h2>
+                    <p class="bsec-split-body">
+                        Acompanhe sua sessao de recarga em tempo real: potência entregue, tempo restante e energia consumida — tudo visivel, tudo preciso. <strong>Transparencia total, zero surpresas.</strong>
+                    </p>
+                    <ul class="bsec-split-list">
+                        <li><strong>Monitoramento em tempo real</strong> — kW, tempo e energia</li>
+                        <li><strong>Compativel com todos os EVs</strong> — CCS2, CHAdeMO, Type 2</li>
+                        <li><strong>Pagamento integrado</strong> — app, cartao ou QR Code</li>
+                        <li><strong>Notificacao de carga completa</strong> — liberdade para aproveitar</li>
+                    </ul>
+                </div>
+
+                <!-- Direita — App window mock -->
+                <div class="bsec-split-right" id="bsec-split-right">
+                    <div class="app-window" style="position:relative;">
+                        <!-- Scanner line -->
+                        <div class="app-scanner"></div>
+
+                        <!-- Chrome -->
+                        <div class="app-window-chrome">
+                            <div class="app-chrome-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="app-chrome-title">elektrocharge — sessao ativa</span>
+                            <div class="app-chrome-status">
+                                <span class="app-chrome-status-dot"></span>
+                                Ao vivo
+                            </div>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="app-window-body">
+
+                            <!-- Sessao header -->
+                            <div class="app-session-header">
+                                <div>
+                                    <div class="app-session-title">Sessao de Recarga</div>
+                                    <div class="app-session-vehicle">BYD Dolphin Mini</div>
+                                </div>
+                                <div class="app-session-badge">DC Fast</div>
+                            </div>
+
+                            <!-- Bateria -->
+                            <div class="app-battery-row">
+                                <iconify-icon icon="solar:battery-charge-bold-duotone" class="app-battery-icon"></iconify-icon>
+                                <div class="app-battery-right">
+                                    <div class="app-battery-labels">
+                                        <span class="app-battery-pct"><span id="app-pct">67</span>%</span>
+                                        <span class="app-battery-target">Meta: 80%</span>
+                                    </div>
+                                    <div class="app-battery-bar">
+                                        <div class="app-battery-fill" id="app-bar" style="width:67%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stats -->
+                            <div class="app-stats-grid">
+                                <div class="app-stat">
+                                    <div class="app-stat-val"><span class="green-num">58.4</span></div>
+                                    <div class="app-stat-label">kW entregues</div>
+                                </div>
+                                <div class="app-stat">
+                                    <div class="app-stat-val">14<span style="font-size:0.7em;color:rgba(255,255,255,0.3)">min</span></div>
+                                    <div class="app-stat-label">Restando</div>
+                                </div>
+                                <div class="app-stat">
+                                    <div class="app-stat-val">22.1</div>
+                                    <div class="app-stat-label">kWh adicionados</div>
+                                </div>
+                            </div>
+
+                            <!-- Waveform — atividade de carga -->
+                            <div class="app-waveform" id="app-waveform"></div>
+
+
+                            <!-- Footer -->
+                            <div class="app-footer">
+                                <div class="app-footer-left">
+                                    <div class="app-footer-connector">
+                                        <iconify-icon icon="solar:plug-circle-bold-duotone"></iconify-icon>
+                                    </div>
+                                    <div class="app-footer-info">
+                                        Conector <strong>CCS2</strong> · Ponto #03
+                                    </div>
+                                </div>
+                                <button class="app-footer-stop">Encerrar sessao</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="bsec-cta" id="bsec-cta">
+                <p class="bsec-cta-text">
+                    Pronto para a nova era<br>
+                    <span>da mobilidade elétrica?</span>
+                </p>
+                <div class="bsec-cta-actions">
+                    <a href="https://maps.app.goo.gl/rKWYBJzKLUBgqaQp8" target="_blank" rel="noopener" class="bsec-btn-primary">
+                        <iconify-icon icon="solar:map-point-bold"></iconify-icon>
+                        Ver localizacoes
+                    </a>
+                    <a href="https://www.instagram.com/elektro.charge/" target="_blank" rel="noopener" class="bsec-btn-ghost">
+                        Saiba mais <iconify-icon icon="solar:round-arrow-right-bold"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TERCEIRA DOBRA — PRECO E COMO FUNCIONA -->
+    <section class="price-section" id="preco">
+        <div class="price-container">
+
+            <!-- Header -->
+            <div class="price-header" id="price-header">
+                <div class="price-eyebrow">
+                    <iconify-icon icon="solar:tag-price-bold-duotone"></iconify-icon>
+                    <span class="scramble-text">Transparencia Total</span>
+                </div>
+                <h2 class="price-title">
+                    Pague so pelo<br>
+                    <span class="price-title-muted">que voce usa.</span>
+                </h2>
+                <p class="price-subtitle">
+                    Sem mensalidade, sem taxa de conexao, sem surpresas.
+                    Cada centavo cobrado corresponde a energia que entrou no seu carro.
+                </p>
+            </div>
+
+            <!-- Feature card — preco + incluso -->
+            <div class="price-feature" id="price-feature">
+
+                <!-- Esquerda: numero grande -->
+                <div class="price-left" style="position:relative;">
+                    <div class="price-left-glow"></div>
+                    <div class="price-col-label">Preco por quilowatt-hora</div>
+
+                    <!-- PRECO: altere o valor abaixo conforme necessario -->
+                    <div>
+                        <div class="price-kw-prefix">a partir de</div>
+                        <div class="price-kw-num" id="price-kw-num">R$&nbsp;1<span style="color:rgba(255,255,255,0.35)">,</span>48</div>
+                        <div class="price-kw-unit">por kWh consumido</div>
+                        <div class="price-kw-badge">
+                            <span class="price-kw-badge-dot"></span>
+                            Sem taxa de conexao
+                        </div>
+                    </div>
+
+                    <!-- Comparativo -->
+                    <div class="price-compare" id="price-compare">
+                        <div class="price-compare-label">100 km rodados — comparativo</div>
+                        <div class="price-compare-row">
+                            <span class="price-compare-name">Eletrico (Elektro Charge)</span>
+                            <span class="price-compare-val green">R$&nbsp;22,20</span>
+                        </div>
+                        <div class="price-compare-row">
+                            <span class="price-compare-name">Gasolina comum</span>
+                            <span class="price-compare-val crossed">R$&nbsp;50,00</span>
+                        </div>
+                        <div class="price-compare-row">
+                            <span class="price-compare-name">Economia por 100 km</span>
+                            <span class="price-compare-val green">≈ 56% menos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direita: o que esta incluso -->
+                <div class="price-right">
+                    <div class="price-col-label">O que esta incluso</div>
+                    <div class="price-includes">
+
+                        <div class="price-include-item" id="pi-0">
+                            <div class="price-include-icon"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+                            <div>
+                                <div class="price-include-name">Carregamento DC Fast</div>
+                                <div class="price-include-desc">Compativel com CCS2 e CHAdeMO. Carregamento rapido direto — sem demora.</div>
+                            </div>
+                        </div>
+
+                        <div class="price-include-item" id="pi-1">
+                            <div class="price-include-icon"><iconify-icon icon="solar:graph-up-bold-duotone"></iconify-icon></div>
+                            <div>
+                                <div class="price-include-name">Monitoramento em tempo real</div>
+                                <div class="price-include-desc">Acompanhe kW entregues, tempo e custo na tela do carregador. Sem apps obrigatorios.</div>
+                            </div>
+                        </div>
+
+                        <div class="price-include-item" id="pi-2">
+                            <div class="price-include-icon"><iconify-icon icon="solar:shield-check-bold-duotone"></iconify-icon></div>
+                            <div>
+                                <div class="price-include-name">Cobranca exata ao centavo</div>
+                                <div class="price-include-desc">Voce paga exatamente o que consumiu. Recibo digital enviado por SMS ou e-mail.</div>
+                            </div>
+                        </div>
+
+                        <div class="price-include-item" id="pi-3">
+                            <div class="price-include-icon"><iconify-icon icon="solar:sun-bold-duotone"></iconify-icon></div>
+                            <div>
+                                <div class="price-include-name">100% energia renovavel</div>
+                                <div class="price-include-desc">Cada kWh adquirido e de fonte limpa. Voce recarrega sem culpa, sem carbono.</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Formas de pagamento -->
+                    <div class="price-pay">
+                        <div class="price-pay-title">Formas de pagamento</div>
+                        <div class="price-pay-chips">
+                            <span class="price-pay-chip"><iconify-icon icon="solar:qr-code-bold-duotone"></iconify-icon> PIX</span>
+                            <span class="price-pay-chip"><iconify-icon icon="solar:card-bold-duotone"></iconify-icon> Crédito</span>
+                            <span class="price-pay-chip"><iconify-icon icon="solar:card-2-bold-duotone"></iconify-icon> Débito</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Nota de preco -->
+            <p class="price-note" id="price-note">
+                * Valores ilustrativos. Preco final exibido no painel do carregador antes de iniciar a sessao. Sem cobranças ocultas.
+            </p>
+
+            <!-- Steps — como funciona -->
+            <div class="price-steps-header" id="price-steps-header">
+                <div class="price-steps-label">Simples do começo ao fim — como funciona</div>
+            </div>
+            <div class="price-steps" id="price-steps">
+
+                <div class="price-step" id="ps-0">
+                    <div class="price-step-num">01</div>
+                    <div class="price-step-icon"><iconify-icon icon="solar:map-point-wave-bold-duotone"></iconify-icon></div>
+                    <h3 class="price-step-title">Chegue e Estacione</h3>
+                    <p class="price-step-body">Vagas sinalizadas, exclusivas para EVs. Fácil de encontrar, fácil de acessar — qualquer hora do dia.</p>
+                </div>
+
+                <div class="price-step" id="ps-1">
+                    <div class="price-step-num">02</div>
+                    <div class="price-step-icon"><iconify-icon icon="solar:plug-circle-bold-duotone"></iconify-icon></div>
+                    <h3 class="price-step-title">Conecte o Cabo</h3>
+                    <p class="price-step-body">Encaixe o conector no seu veículo. O sistema identifica automaticamente o padrão e inicia em segundos.</p>
+                </div>
+
+                <div class="price-step" id="ps-2">
+                    <div class="price-step-num">03</div>
+                    <div class="price-step-icon"><iconify-icon icon="solar:card-bold-duotone"></iconify-icon></div>
+                    <h3 class="price-step-title">Pague pelo App Spott</h3>
+                    <p class="price-step-body">Use o app Spott para iniciar e pagar a sessão. Aceita PIX, cartão de crédito e débito — aprovado em segundos.</p>
+                </div>
+
+                <div class="price-step" id="ps-3">
+                    <div class="price-step-num">04</div>
+                    <div class="price-step-icon"><iconify-icon icon="solar:cup-hot-bold-duotone"></iconify-icon></div>
+                    <h3 class="price-step-title">Aproveite o Tempo</h3>
+                    <p class="price-step-body">Restaurantes, cafés e comércio do lado. A carga é automática — você só volta quando quiser.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- BENTO BENEFITS -->
+    <section class="benefits-bento" id="beneficios-bento" style="position:relative;overflow:hidden;">
+        <div class="s-aurora s-aurora-green" style="position:absolute;width:600px;height:450px;top:15%;right:-5%;z-index:0;"></div><div class="s-dot-grid" style="opacity:.45;"></div>
+        <div class="bento-wrap">
+
+            <div class="bento-head">
+                <div class="bento-eyebrow scramble-text">Por que Elektro Charge</div>
+                <h2 class="bento-h2">Tecnologia que<br><span class="bhi">fala por si só.</span></h2>
+                <p class="bento-lead">Cada detalhe foi pensado para oferecer a melhor experiência de carregamento. Rápido, seguro e sempre disponível.</p>
+            </div>
+
+            <div class="bento-grid">
+
+                <!-- 60 kW large 2x2 -->
+                <div class="bn-card bn-power" id="bn-power">
+                    <iconify-icon icon="solar:bolt-bold-duotone" class="bn-power-icon"></iconify-icon>
+                    <div class="bn-power-num">
+                        <span class="bn-power-count" id="kw-counter">0</span>
+                        <span class="bn-power-unit">kW</span>
+                    </div>
+                    <div class="bn-power-tag">DC Fast Charging</div>
+                    <p class="bn-power-desc">Carregue 80% da bateria em aproximadamente 40 minutos. A maior potência de recarga da região, disponível para todos os elétricos modernos.</p>
+                    <div class="bn-charge-wrap">
+                        <div class="bn-charge-pct" id="charge-pct">0%</div>
+                        <div class="bn-charge-bar">
+                            <div class="bn-charge-fill" id="charge-fill"></div>
+                        </div>
+                        <div class="bn-charge-labels">
+                            <span>Vazio</span>
+                            <span>80% em 40 min</span>
+                            <span>Cheio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App -->
+                <div class="bn-card bn-app">
+                    <div class="bn-icon"><iconify-icon icon="solar:smartphone-bold-duotone"></iconify-icon></div>
+                    <div class="bn-card-title">App Inteligente</div>
+                    <p class="bn-card-desc">Inicie, monitore e encerre sua sessão de carregamento diretamente pelo celular, em tempo real.</p>
+                </div>
+
+                <!-- 24h -->
+                <div class="bn-card bn-24h">
+                    <div class="bn-clock"><span id="bento-clock">00<span class="bn-clock-dot">:</span>00</span></div>
+                    <div class="bn-card-title">24h / 7 dias</div>
+                    <p class="bn-card-desc">Sempre disponivel quando você precisar. Sem restrição de horário, todos os dias do ano.</p>
+                </div>
+
+                <!-- Segurança -->
+                <div class="bn-card bn-seg">
+                    <div class="bn-icon"><iconify-icon icon="solar:shield-check-bold-duotone"></iconify-icon></div>
+                    <div class="bn-card-title">Segurança Total</div>
+                    <p class="bn-card-desc">Autenticação via RFID ou App. Sua sessão protegida do início ao fim, sem preocupações.</p>
+                </div>
+
+                <!-- Energia Limpa -->
+                <div class="bn-card bn-eco">
+                    <div class="bn-icon"><iconify-icon icon="solar:leaf-bold-duotone"></iconify-icon></div>
+                    <div class="bn-card-title">Energia Limpa</div>
+                    <p class="bn-card-desc">Comprometidos com a mobilidade sustentável e com o futuro do nosso planeta.</p>
+                </div>
+
+                <!-- Pagamento -->
+                <div class="bn-card bn-pay">
+                    <div class="bn-icon"><iconify-icon icon="solar:card-bold-duotone"></iconify-icon></div>
+                    <div class="bn-card-title">Pagamento Fácil</div>
+                    <p class="bn-card-desc">Pix, cartão de crédito ou débito. Rápido e sem complicação.</p>
+                    <div class="bn-pay-chips">
+                        <span class="bn-pay-chip">Pix</span>
+                        <span class="bn-pay-chip">Crédito</span>
+                        <span class="bn-pay-chip">Débito</span>
+                        <span class="bn-pay-chip">App</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- QUARTA DOBRA — VIDEO BG + GLOW CARD -->
+    <section class="glow-section" id="quarta-dobra">
+
+        <!-- Orbs flutuantes de fundo -->
+        <div class="glow-orb" style="width:500px;height:500px;background:rgba(34,197,94,0.07);top:10%;left:-10%;--dur:12s;--dx:40px;--dy:-30px;--ds:1.15;"></div>
+        <div class="glow-orb" style="width:400px;height:400px;background:rgba(34,197,94,0.05);bottom:5%;right:-8%;--dur:9s;--dx:-30px;--dy:20px;--ds:1.08;"></div>
+        <div class="glow-orb" style="width:250px;height:250px;background:rgba(74,222,128,0.04);top:55%;left:60%;--dur:15s;--dx:20px;--dy:-40px;--ds:1.2;"></div>
+
+        <!-- Video de fundo -->
+        <div class="glow-video-bg">
+            <video autoplay muted loop playsinline>
+                <source src="assets/video/video_scrub.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="glow-container">
+            <div class="glow-card-wrap" id="glow-card-wrap">
+
+                <!-- Aura de glow atras do card -->
+                <div class="glow-card-aura"></div>
+
+                <!-- Card principal com efeito flashlight -->
+                <div class="glow-card" id="glow-card">
+                    <div class="glow-rotate-border"></div>
+                    <div class="glow-card-flash" id="glow-flash"></div>
+                    <div class="glow-card-inner">
+
+                        <div class="glow-eyebrow" id="glow-eyebrow">
+                            <span class="glow-eyebrow-dot"></span>
+                            DC Fast Charging
+                        </div>
+
+                        <div class="glow-big-num" id="glow-big-num">
+                            0 <span class="g-dim">→</span> <span class="g-green">80%</span>
+                        </div>
+                        <div class="glow-sub-time" id="glow-sub-time">em menos de 30 minutos</div>
+
+                        <p class="glow-sub" id="glow-sub">
+                            Tecnologia DC de alta potência direto no painel do seu carro.
+                            Sem filas, sem burocracia — você chega, conecta e aproveita.
+                        </p>
+
+                        <div class="glow-divider"></div>
+
+                        <!-- Stats -->
+                        <div class="glow-stats" id="glow-stats">
+                            <div class="glow-stat">
+                                <div class="glow-stat-num">60 kW</div>
+                                <div class="glow-stat-label">Potencia DC</div>
+                            </div>
+                            <div class="glow-stat">
+                                <div class="glow-stat-num">R$&nbsp;1,48</div>
+                                <div class="glow-stat-label">por kWh</div>
+                            </div>
+                            <div class="glow-stat">
+                                <div class="glow-stat-num">24/7</div>
+                                <div class="glow-stat-label">Disponivel</div>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <a href="https://maps.app.goo.gl/rKWYBJzKLUBgqaQp8" target="_blank" rel="noopener" class="glow-btn" id="glow-cta">
+                            <span class="glow-btn-shimmer"></span>
+                            <iconify-icon icon="solar:map-point-bold-duotone" style="font-size:1.1rem;"></iconify-icon>
+                            Encontrar o ponto de carga
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <a href="#" class="footer-logo">
+                <div class="footer-logo-icon">
+                    <iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon>
+                </div>
+                Elektro<span>.Charge</span>
+            </a>
+            <div class="footer-tagline">O futuro da mobilidade elétrica</div>
+            <div class="footer-divider"></div>
+            <div class="footer-meta">
+                <span>Av. Maringá, 2729</span>
+                <span class="footer-dot">&#x26A1;</span>
+                <span>Pinhais — PR</span>
+                <span class="footer-dot">&#x26A1;</span>
+                <span>24 horas, 7 dias por semana</span>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Elektro Charge. Todos os direitos reservados.</span>
+                <span>Tecnologia DC Fast Charging · 60 kW</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    /* — Cursor glow segue o mouse — */
+    (function(){
+        var g = document.getElementById('cursor-glow');
+        if (!g) return;
+        document.addEventListener('mousemove', function(e){
+            g.style.left = e.clientX + 'px';
+            g.style.top  = e.clientY + 'px';
+        });
+    })();
+
+    /* — Flashlight nos cards — */
+    document.querySelectorAll('.bsec-card,.price-step,.bn-card,.extra-card').forEach(function(card){
+        card.addEventListener('mousemove', function(e){
+            var r = card.getBoundingClientRect();
+            var x = ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%';
+            var y = ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%';
+            card.style.setProperty('--mx', x);
+            card.style.setProperty('--my', y);
+        });
+    });
+
+    /* — Footer copyright corrigido — */
+    document.querySelectorAll('.footer-bottom span').forEach(function(el){
+        if (el.textContent.includes('2026')) el.textContent = '© 2025 Elektro Charge. Todos os direitos reservados.';
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+﻿User-agent: *
+Allow: /
+Disallow: /_archive/
+
+Sitemap: /sitemap.xml

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Benefícios do Elektro Charge — DC Fast Charging 60 kW em Pinhais, PR." />
+<meta name="theme-color" content="#000000" />
+<title>Benefícios — Elektro Charge</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+
+/* ── Progress bar (GPU: scaleX) ── */
+#scroll-progress {
+    position: fixed; top: 0; left: 0;
+    height: 2px; width: 100%;
+    background: linear-gradient(90deg, #16a34a, #4ade80);
+    z-index: 9999; pointer-events: none;
+    transform-origin: left; transform: scaleX(0);
+    will-change: transform;
+}
+
+/* ── Dot grid section (REMOVIDO — causava flickering) ── */
+.bnf-section--dots { background-color: #000 !important; background-image: none !important; }
+.bnf-hero::before { display: none !important; }
+
+/* ── Grain texture (static) ── */
+body::after {
+    content: ''; position: fixed; inset: 0;
+    pointer-events: none; z-index: 9998; opacity: .03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px; will-change: transform;
+}
+
+/* ── Custom cursor ── */
+@media (pointer: fine) { * { cursor: none !important } }
+#custom-cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999; will-change: transform; }
+.c-ring { position: absolute; width: 28px; height: 28px; border: 1.5px solid rgba(34,197,94,.6); border-radius: 50%; top: -14px; left: -14px; transition: transform .22s cubic-bezier(.23,1,.32,1), border-color .2s; }
+.c-dot  { position: absolute; width: 5px; height: 5px; background: #22c55e; border-radius: 50%; top: -2.5px; left: -2.5px; }
+#custom-cursor.is-hovering .c-ring { transform: scale(1.8); border-color: rgba(34,197,94,.9) }
+.navbar.scrolled { background: rgba(0,0,0,.95) !important }
+
+/* ══════════════════════════════
+   HERO  — split desktop
+══════════════════════════════ */
+.bnf-hero {
+    min-height: 100vh; background: #000;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; position: relative;
+    padding-top: 80px; overflow: hidden;
+}
+/* dot grid */
+.bnf-hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255,255,255,.038) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+/* bottom glow */
+.bnf-hero::after {
+    content: ''; position: absolute; bottom: -15%; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 450px;
+    background: radial-gradient(ellipse, rgba(34,197,94,.055) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.bnf-hero-left  { padding: 5rem 3rem 7rem 4rem; position: relative; z-index: 2; }
+.bnf-hero-right { display: flex; align-items: center; justify-content: center; padding: 5rem 4rem 7rem 0; position: relative; z-index: 2; }
+
+.bnf-tag {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .6rem; font-weight: 600; text-transform: uppercase; letter-spacing: .18em;
+    color: #22c55e; background: rgba(34,197,94,.07); border: 1px solid rgba(34,197,94,.2);
+    border-radius: 99px; padding: .3rem .9rem; margin-bottom: 2rem;
+}
+.bnf-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,.8); }
+
+.bnf-h1 {
+    font-size: clamp(2.4rem, 3.8vw, 3.8rem); font-weight: 700;
+    letter-spacing: -.04em; line-height: 1.07; margin-bottom: 1.3rem;
+}
+.bnf-h1 .g {
+    background: linear-gradient(135deg, #16a34a, #4ade80);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.bnf-hero-p {
+    font-size: .95rem; color: rgba(255,255,255,.46);
+    line-height: 1.75; letter-spacing: -.01em; max-width: 28rem; margin-bottom: 2.5rem;
+}
+.bnf-hero-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+/* ── Dial ── */
+.bnf-dial {
+    position: relative; width: 320px; height: 320px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.bnf-dial-ring {
+    position: absolute; border-radius: 50%; inset: 0;
+    border: 1px solid rgba(34,197,94,.1);
+}
+.bnf-dial-ring:nth-child(2) { inset: 22px; border-color: rgba(34,197,94,.06); }
+.bnf-dial-ring:nth-child(3) { inset: 44px; border-color: rgba(34,197,94,.035); }
+.bnf-dial-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bnf-dial-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 6.5rem; font-weight: 700;
+    letter-spacing: -.06em; line-height: 1;
+    background: linear-gradient(160deg, #fff 0%, #d1fae5 45%, #22c55e 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    position: relative; z-index: 1;
+}
+.bnf-dial-unit  { font-family: 'JetBrains Mono', monospace; font-size: .8rem; font-weight: 500; color: rgba(255,255,255,.3); letter-spacing: .12em; position: relative; z-index: 1; margin-top: .25rem; }
+.bnf-dial-label { font-size: .58rem; text-transform: uppercase; letter-spacing: .22em; color: rgba(34,197,94,.8); font-weight: 600; margin-top: .5rem; position: relative; z-index: 1; }
+
+/* scroll hint */
+.bnf-scroll {
+    position: absolute; bottom: 1.75rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: .4rem; z-index: 3; opacity: .3;
+}
+.bnf-scroll span { font-size: .48rem; letter-spacing: .22em; text-transform: uppercase; }
+.bnf-scroll-line { width: 1px; height: 30px; background: rgba(255,255,255,.35); }
+
+/* ══════════════════════════════
+   SHARED
+══════════════════════════════ */
+.bnf-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,.07), transparent); }
+
+.bnf-section { padding: 8rem 0; position: relative; background: #000; }
+.bnf-section--alt  { background: #050505; }
+.bnf-section--dots {
+    background-color: #000;
+    background-image: radial-gradient(circle, rgba(255,255,255,.032) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+
+.bnf-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+.bnf-head { text-align: center; margin-bottom: 4rem; }
+.bnf-eye {
+    display: inline-flex; align-items: center; gap: .75rem;
+    font-size: .6rem; font-weight: 600; text-transform: uppercase; letter-spacing: .2em;
+    color: rgba(34,197,94,.8); margin-bottom: 1.1rem;
+}
+.bnf-eye::before, .bnf-eye::after { content: ''; display: block; width: 20px; height: 1px; background: rgba(34,197,94,.4); }
+.bnf-h2 { font-size: clamp(1.9rem, 3.5vw, 3rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; margin-bottom: .85rem; }
+.bnf-h2 .g { background: linear-gradient(135deg, #16a34a, #4ade80); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.bnf-sub { font-size: .9rem; color: rgba(255,255,255,.4); max-width: 30rem; margin: 0 auto; line-height: 1.72; }
+
+/* ── Shared buttons ── */
+.bnf-btn-g {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: #22c55e; color: #000; font-weight: 700; font-size: .82rem;
+    padding: .82rem 1.8rem; border-radius: 99px; text-decoration: none;
+    transition: background .2s, transform .2s, box-shadow .25s;
+}
+.bnf-btn-g:hover { background: #4ade80; transform: scale(1.03); box-shadow: 0 6px 22px rgba(34,197,94,.35); }
+.bnf-btn-o {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.07); color: rgba(255,255,255,.72); font-weight: 600; font-size: .82rem;
+    padding: .82rem 1.8rem; border-radius: 99px; border: 1px solid rgba(255,255,255,.12);
+    text-decoration: none; transition: background .2s, color .2s;
+}
+.bnf-btn-o:hover { background: rgba(255,255,255,.13); color: #fff; }
+
+/* ══════════════════════════════
+   POWER COMPARISON
+══════════════════════════════ */
+.cmp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+    align-items: stretch;
+}
+.cmp-card {
+    background: rgba(255,255,255,.026); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 22px; padding: 2rem 1.75rem 2.25rem;
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+    transition: border-color .25s, transform .25s;
+    height: 100%; min-height: 100%; align-self: stretch;
+}
+.cmp-card:hover { border-color: rgba(255,255,255,.13); transform: translateY(-3px); }
+.cmp-card--active {
+    border-color: rgba(34,197,94,.28); background: rgba(34,197,94,.04);
+    box-shadow: 0 0 48px rgba(34,197,94,.07), inset 0 1px 0 rgba(34,197,94,.14);
+}
+.cmp-card--active:hover { border-color: rgba(34,197,94,.45); transform: translateY(-3px); }
+.cmp-badge {
+    position: absolute; top: 1.1rem; right: 1.1rem;
+    font-size: .54rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+    color: #22c55e; background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25);
+    border-radius: 99px; padding: .2rem .65rem;
+}
+.cmp-icon {
+    width: 2.8rem; height: 2.8rem; background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: rgba(255,255,255,.45); margin-bottom: 1.5rem;
+}
+.cmp-card--active .cmp-icon { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.25); color: #22c55e; }
+.cmp-kw {
+    font-family: 'JetBrains Mono', monospace; font-size: 3rem; font-weight: 700;
+    letter-spacing: -.05em; line-height: 1; color: rgba(255,255,255,.38); margin-bottom: .2rem;
+}
+.cmp-card--active .cmp-kw {
+    background: linear-gradient(135deg, #16a34a, #4ade80);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.cmp-unit { font-size: .6rem; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.2); font-family: 'JetBrains Mono', monospace; margin-bottom: 1.25rem; }
+.cmp-card--active .cmp-unit { color: rgba(34,197,94,.6); }
+.cmp-name { font-size: .92rem; font-weight: 600; margin-bottom: .45rem; letter-spacing: -.01em; }
+.cmp-desc { font-size: .79rem; color: rgba(255,255,255,.36); line-height: 1.62; margin-bottom: 1.75rem; flex: 1; min-height: 0; }
+.cmp-card--active .cmp-desc { color: rgba(255,255,255,.52); }
+.cmp-bar { height: 3px; background: rgba(255,255,255,.06); border-radius: 99px; margin-top: auto; overflow: hidden; }
+.cmp-bar-fill { height: 100%; border-radius: 99px; background: rgba(255,255,255,.14); transition: width 1.2s cubic-bezier(.22,1,.36,1); }
+.cmp-card--active .cmp-bar-fill { background: linear-gradient(to right, #16a34a, #4ade80); box-shadow: 0 0 8px rgba(34,197,94,.4); }
+
+/* ══════════════════════════════
+   BENEFIT CARDS GRID
+══════════════════════════════ */
+.bnf-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: start;
+}
+.bnf-card {
+    background: rgba(255,255,255,.024); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;
+    transition: border-color .25s, background .25s, transform .22s;
+}
+.bnf-card::before {
+    content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,.08), transparent);
+}
+.bnf-card:hover { border-color: rgba(255,255,255,.13); background: rgba(255,255,255,.04); transform: translateY(-2px); }
+.bnf-card-icon {
+    width: 2.75rem; height: 2.75rem; background: rgba(34,197,94,.08);
+    border: 1px solid rgba(34,197,94,.2); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem; color: #22c55e; margin-bottom: 1.2rem;
+}
+.bnf-card-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 2.4rem; font-weight: 700;
+    letter-spacing: -.04em; line-height: 1;
+    background: linear-gradient(135deg, #16a34a, #4ade80);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: .45rem;
+}
+.bnf-card-rule { width: 24px; height: 2px; background: linear-gradient(to right, #22c55e, transparent); border-radius: 99px; margin-bottom: .85rem; }
+.bnf-card-title { font-size: .88rem; font-weight: 600; letter-spacing: -.01em; margin-bottom: .45rem; }
+.bnf-card-desc  { font-size: .79rem; color: rgba(255,255,255,.4); line-height: 1.65; }
+
+/* ══════════════════════════════
+   TIMELINE
+══════════════════════════════ */
+.tl-wrap { position: relative; }
+
+/* Desktop: horizontal 5-col */
+.tl-items {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;
+    position: relative; align-items: start;
+}
+.tl-items::before {
+    content: ''; position: absolute; top: 7px;
+    left: calc(10% + .5rem); right: calc(10% + .5rem);
+    height: 1px; background: rgba(255,255,255,.07);
+}
+.tl-line-fill {
+    position: absolute; top: 7px; left: calc(10% + .5rem); right: calc(10% + .5rem);
+    height: 1px;
+    background: linear-gradient(to right, #16a34a, #4ade80);
+    box-shadow: 0 0 8px rgba(34,197,94,.5);
+    will-change: transform;
+    transform: scaleX(0); transform-origin: left center;
+    transition: none;
+}
+.tl-item { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.tl-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.18); background: #000;
+    flex-shrink: 0; position: relative; z-index: 2;
+    transition: border-color .3s, box-shadow .3s;
+}
+.tl-dot.lit { border-color: #22c55e; box-shadow: 0 0 10px rgba(34,197,94,.7), 0 0 0 3px rgba(34,197,94,.1); }
+.tl-card {
+    background: rgba(255,255,255,.024); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 16px; padding: 1.35rem 1.25rem; text-align: center; width: 100%;
+    transition: border-color .3s;
+}
+.tl-card:hover { border-color: rgba(255,255,255,.13); }
+.tl-min   { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: #22c55e; margin-bottom: .45rem; letter-spacing: -.02em; }
+.tl-title { font-size: .84rem; font-weight: 600; margin-bottom: .35rem; letter-spacing: -.01em; }
+.tl-desc  { font-size: .76rem; color: rgba(255,255,255,.38); line-height: 1.65; }
+
+/* ══════════════════════════════
+   FAQ
+══════════════════════════════ */
+.faq-list { max-width: 740px; margin: 0 auto; display: flex; flex-direction: column; gap: .5rem; }
+.faq-item {
+    background: rgba(255,255,255,.024); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 14px; overflow: hidden; transition: border-color .25s, background .25s;
+}
+.faq-item.open { border-color: rgba(34,197,94,.22); background: rgba(34,197,94,.025); }
+.faq-q {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.3rem 1.6rem; background: none; border: none; color: #fff;
+    font-family: 'Space Grotesk', sans-serif; font-size: .91rem; font-weight: 600;
+    letter-spacing: -.01em; cursor: none; text-align: left;
+}
+.faq-icon {
+    width: 1.7rem; height: 1.7rem; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,.12); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: #22c55e; font-family: 'JetBrains Mono', monospace;
+    transition: border-color .2s, background .2s, transform .25s;
+}
+.faq-item.open .faq-icon { border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.08); transform: rotate(45deg); }
+.faq-a { overflow: hidden; height: 0; }
+.faq-a-inner {
+    padding: .9rem 1.6rem 1.4rem; font-size: .86rem; color: rgba(255,255,255,.5);
+    line-height: 1.75; letter-spacing: -.01em; border-top: 1px solid rgba(255,255,255,.05);
+}
+
+/* ══════════════════════════════
+   CLOSING CTA
+══════════════════════════════ */
+.bnf-cta {
+    min-height: 72vh; background: #000;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; padding: 6rem 2rem;
+}
+.bnf-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(34,197,94,.055) 0%, transparent 60%);
+    pointer-events: none;
+}
+.bnf-cta-inner { position: relative; z-index: 1; max-width: 580px; }
+.bnf-cta-chip {
+    display: inline-flex; align-items: center; gap: .45rem;
+    font-size: .58rem; font-weight: 600; text-transform: uppercase; letter-spacing: .18em;
+    color: #22c55e; background: rgba(34,197,94,.07); border: 1px solid rgba(34,197,94,.2);
+    border-radius: 99px; padding: .28rem .85rem; margin-bottom: 1.75rem;
+}
+.bnf-cta-addr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(.85rem, 1.8vw, 1.25rem); font-weight: 700;
+    color: rgba(255,255,255,.18); letter-spacing: -.02em; margin-bottom: .6rem;
+}
+.bnf-cta-h2 {
+    font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700;
+    letter-spacing: -.04em; line-height: 1.04; margin-bottom: .8rem;
+}
+.bnf-cta-p { font-size: .9rem; color: rgba(255,255,255,.4); margin-bottom: 2.75rem; }
+.bnf-cta-line {
+    width: 80px; height: 2px; background: linear-gradient(to right, #16a34a, #4ade80);
+    border-radius: 99px; margin: 0 auto 2.5rem;
+    animation: pulse-scale 2s ease-in-out infinite;
+    will-change: transform; transform-origin: center;
+}
+@keyframes pulse-scale { 0%,100%{transform:scaleX(.4)} 50%{transform:scaleX(1)} }
+.bnf-cta-btns { display: flex; gap: .9rem; justify-content: center; flex-wrap: wrap; }
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 900px) {
+    .bnf-hero { grid-template-columns: 1fr; text-align: center; }
+    .bnf-hero-left  { padding: 5rem 2rem 2rem; max-width: 560px; margin: 0 auto; }
+    .bnf-hero-right { padding: 1rem 2rem 6rem; }
+    .bnf-hero-btns  { justify-content: center; }
+    .bnf-dial { width: 250px; height: 250px; }
+    .bnf-dial-num { font-size: 5rem; }
+}
+@media (max-width: 768px) {
+    .cmp-grid  { grid-template-columns: 1fr; }
+    .bnf-grid  { grid-template-columns: 1fr 1fr; }
+    .tl-items  { grid-template-columns: 1fr; }
+    .tl-items::before, .tl-line-fill { display: none; }
+    .tl-item   { flex-direction: row; align-items: flex-start; }
+    .tl-dot    { margin-top: .3rem; flex-shrink: 0; }
+    .tl-card   { text-align: left; }
+}
+@media (max-width: 480px) {
+    .bnf-grid { grid-template-columns: 1fr; }
+    .bnf-section { padding: 5rem 0; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+<div id="custom-cursor"><div class="c-ring"></div><div class="c-dot"></div></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="main-nav">
+    <a href="index.html" class="navbar-logo">
+        <div class="navbar-logo-icon"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+        <span class="navbar-logo-text">Elektro<span>.Charge</span></span>
+    </a>
+    <div class="navbar-links">
+        <a href="index.html">Início</a>
+        <a href="beneficios.html" style="color:#22c55e;border-bottom:1px solid rgba(34,197,94,.4);padding-bottom:2px">Benefícios</a>
+        <a href="tecnologia.html">Tecnologia</a>
+        <a href="sobre.html">Sobre</a>
+    </div>
+    <button class="navbar-btn" onclick="window.location='https://wa.me/5541998230026'">Falar Conosco</button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="bnf-hero">
+    <div class="bnf-hero-left">
+        <div class="bnf-tag" id="hero-tag">
+            <div class="bnf-tag-dot"></div>
+            Elektro Charge · Pinhais, PR
+        </div>
+        <h1 class="bnf-h1" id="hero-h1">
+            Carregue em<br>minutos.<br><span class="g">Dirija por horas.</span>
+        </h1>
+        <p class="bnf-hero-p" id="hero-p">
+            DC Fast Charging de 60 kW — o mais potente de Pinhais. 80% da bateria em cerca de 40 minutos. Disponível 24 horas por dia, todos os dias.
+        </p>
+        <div class="bnf-hero-btns" id="hero-btns">
+            <a href="#comparativo" class="bnf-btn-g">
+                <iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon>
+                Ver os benefícios
+            </a>
+            <a href="https://maps.app.goo.gl/rKWYBJzKLUBgqaQp8" target="_blank" rel="noopener" class="bnf-btn-o">
+                <iconify-icon icon="solar:map-point-bold-duotone"></iconify-icon>
+                Como Chegar
+            </a>
+        </div>
+    </div>
+    <div class="bnf-hero-right" id="hero-right">
+        <div class="bnf-dial">
+            <div class="bnf-dial-ring"></div>
+            <div class="bnf-dial-ring"></div>
+            <div class="bnf-dial-ring"></div>
+            <svg class="bnf-dial-svg" viewBox="0 0 320 320" fill="none">
+                <circle cx="160" cy="160" r="142" stroke="rgba(255,255,255,0.04)" stroke-width="1.5" fill="none"/>
+                <circle cx="160" cy="160" r="142"
+                    stroke="url(#arcGrad)" stroke-width="2"
+                    stroke-dasharray="0 893"
+                    stroke-dashoffset="223"
+                    stroke-linecap="round"
+                    fill="none" id="dial-arc"/>
+                <defs>
+                    <linearGradient id="arcGrad" x1="0" y1="0" x2="320" y2="320" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#16a34a"/>
+                        <stop offset="100%" stop-color="#4ade80"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="bnf-dial-num" id="hero-num">0</div>
+            <div class="bnf-dial-unit">kW</div>
+            <div class="bnf-dial-label">DC Fast Charging</div>
+        </div>
+    </div>
+    <div class="bnf-scroll">
+        <span>Scroll</span>
+        <div class="bnf-scroll-line"></div>
+    </div>
+</section>
+
+<div class="bnf-divider"></div>
+
+<!-- ══ POWER COMPARISON ══ -->
+<section class="bnf-section bnf-section--dots" id="comparativo">
+    <div class="bnf-wrap">
+        <div class="bnf-head">
+            <div class="bnf-eye">Comparativo de Carga</div>
+            <h2 class="bnf-h2">Não é só mais rápido.<br><span class="g">É outra categoria.</span></h2>
+            <p class="bnf-sub">Entenda por que a carga DC rápida transforma a experiência de ter um veículo elétrico.</p>
+        </div>
+        <div class="cmp-grid" id="cmp-grid">
+            <div class="cmp-card">
+                <div class="cmp-icon"><iconify-icon icon="solar:plug-circle-bold-duotone"></iconify-icon></div>
+                <div class="cmp-kw" data-count="3">0</div>
+                <div class="cmp-unit">kW · Tomada Doméstica</div>
+                <div class="cmp-name">Carga Residencial</div>
+                <p class="cmp-desc">8 a 12 horas para carga completa. Adequada para pernoite em casa. Limitada pela rede elétrica doméstica.</p>
+                <div class="cmp-bar"><div class="cmp-bar-fill" style="width:6%"></div></div>
+            </div>
+            <div class="cmp-card">
+                <div class="cmp-icon"><iconify-icon icon="solar:home-wifi-bold-duotone"></iconify-icon></div>
+                <div class="cmp-kw" data-count="22">0</div>
+                <div class="cmp-unit">kW · AC Semi-Rápido</div>
+                <div class="cmp-name">Wallbox AC</div>
+                <p class="cmp-desc">2 a 4 horas para carga completa. Bom para paradas intermediárias. Exige wallbox instalado.</p>
+                <div class="cmp-bar"><div class="cmp-bar-fill" style="width:37%"></div></div>
+            </div>
+            <div class="cmp-card cmp-card--active">
+                <div class="cmp-badge">Elektro Charge</div>
+                <div class="cmp-icon"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+                <div class="cmp-kw" data-count="60">0</div>
+                <div class="cmp-unit">kW · DC Fast Charging</div>
+                <div class="cmp-name">Máxima Velocidade</div>
+                <p class="cmp-desc">80% em 40 minutos. O mais rápido disponível em Pinhais. Sem agendamento, sem espera.</p>
+                <div class="cmp-bar"><div class="cmp-bar-fill" style="width:100%"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bnf-divider"></div>
+
+<!-- ══ BENEFIT CARDS ══ -->
+<section class="bnf-section bnf-section--alt">
+    <div class="bnf-wrap">
+        <div class="bnf-head">
+            <div class="bnf-eye">Por Que Escolher</div>
+            <h2 class="bnf-h2">Números que<br><span class="g">definem o padrão.</span></h2>
+        </div>
+        <div class="bnf-grid" id="bnf-grid">
+            <div class="bnf-card">
+                <div class="bnf-card-icon"><iconify-icon icon="solar:bolt-circle-bold-duotone"></iconify-icon></div>
+                <div class="bnf-card-num">60 kW</div>
+                <div class="bnf-card-rule"></div>
+                <div class="bnf-card-title">Máxima Potência DC</div>
+                <p class="bnf-card-desc">Equivalente a 20 carregadores domésticos simultâneos. O mais potente da região de Pinhais.</p>
+            </div>
+            <div class="bnf-card">
+                <div class="bnf-card-icon"><iconify-icon icon="solar:hourglass-bold-duotone"></iconify-icon></div>
+                <div class="bnf-card-num">40 min</div>
+                <div class="bnf-card-rule"></div>
+                <div class="bnf-card-title">Para 80% da Bateria</div>
+                <p class="bnf-card-desc">Para veículos com bateria de 50–70 kWh. O tempo de uma pausa para café.</p>
+            </div>
+            <div class="bnf-card">
+                <div class="bnf-card-icon"><iconify-icon icon="solar:clock-circle-bold-duotone"></iconify-icon></div>
+                <div class="bnf-card-num">24/7</div>
+                <div class="bnf-card-rule"></div>
+                <div class="bnf-card-title">Sempre Disponível</div>
+                <p class="bnf-card-desc">Sem horário de fechamento. Sem feriados. O Elektro Charge opera quando você precisa.</p>
+            </div>
+            <div class="bnf-card">
+                <div class="bnf-card-icon"><iconify-icon icon="solar:plug-bold-duotone"></iconify-icon></div>
+                <div class="bnf-card-num">CCS2</div>
+                <div class="bnf-card-rule"></div>
+                <div class="bnf-card-title">Conector Universal</div>
+                <p class="bnf-card-desc">Compatível com BMW, VW, Audi, Hyundai, Kia, BYD, Chevrolet, Volvo e mais de 90% dos elétricos modernos.</p>
+            </div>
+            <div class="bnf-card">
+                <div class="bnf-card-icon"><iconify-icon icon="solar:leaf-bold-duotone"></iconify-icon></div>
+                <div class="bnf-card-num">0g</div>
+                <div class="bnf-card-rule"></div>
+                <div class="bnf-card-title">CO₂ no Ponto de Carga</div>
+                <p class="bnf-card-desc">Emissão direta zero. Cada recarga é um passo concreto em direção a um futuro mais limpo.</p>
+            </div>
+            <div class="bnf-card">
+                <div class="bnf-card-icon"><iconify-icon icon="solar:smartphone-bold-duotone"></iconify-icon></div>
+                <div class="bnf-card-num">App</div>
+                <div class="bnf-card-rule"></div>
+                <div class="bnf-card-title">Controle pelo Celular</div>
+                <p class="bnf-card-desc">Inicie, monitore e encerre a sessão pelo celular. Pagamento integrado e notificações em tempo real.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bnf-divider"></div>
+
+<!-- ══ TIMELINE ══ -->
+<section class="bnf-section bnf-section--dots">
+    <div class="bnf-wrap">
+        <div class="bnf-head">
+            <div class="bnf-eye">Durante a Recarga</div>
+            <h2 class="bnf-h2">40 minutos.<br><span class="g">Bem aproveitados.</span></h2>
+            <p class="bnf-sub">O que você pode fazer enquanto seu carro recarrega na velocidade máxima.</p>
+        </div>
+        <div class="tl-wrap" id="tl-wrap">
+            <div class="tl-line-fill" id="tl-fill"></div>
+            <div class="tl-items">
+                <div class="tl-item">
+                    <div class="tl-dot" id="tl0"></div>
+                    <div class="tl-card">
+                        <div class="tl-min">0 min</div>
+                        <div class="tl-title">Conecte e relaxe</div>
+                        <p class="tl-desc">Plugue o CCS2 e o carregamento começa automaticamente via app.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot" id="tl1"></div>
+                    <div class="tl-card">
+                        <div class="tl-min">10 min</div>
+                        <div class="tl-title">Café e pausa</div>
+                        <p class="tl-desc">Há estabelecimentos próximos. Você merece essa pausa.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot" id="tl2"></div>
+                    <div class="tl-card">
+                        <div class="tl-min">20 min</div>
+                        <div class="tl-title">Metade do caminho</div>
+                        <p class="tl-desc">Bateria acima de 40%. Tempo para e-mails ou ligações.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot" id="tl3"></div>
+                    <div class="tl-card">
+                        <div class="tl-min">35 min</div>
+                        <div class="tl-title">Quase completo</div>
+                        <p class="tl-desc">Acima de 80%. O app avisa — hora de voltar com calma.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot" id="tl4"></div>
+                    <div class="tl-card">
+                        <div class="tl-min">40 min</div>
+                        <div class="tl-title">Estrada à frente</div>
+                        <p class="tl-desc">Carga completa. Centenas de quilômetros disponíveis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bnf-divider"></div>
+
+<!-- ══ FAQ ══ -->
+<section class="bnf-section bnf-section--alt">
+    <div class="bnf-wrap">
+        <div class="bnf-head">
+            <div class="bnf-eye">Dúvidas Frequentes</div>
+            <h2 class="bnf-h2">Perguntas que<br><span class="g">todo mundo faz.</span></h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+            <div class="faq-item">
+                <button class="faq-q">Meu veículo é compatível?<div class="faq-icon">+</div></button>
+                <div class="faq-a"><div class="faq-a-inner">Se o seu veículo possui conector CCS2 (Combo 2), sim. Isso inclui BMW iX, i4, VW ID.4, Audi e-tron, Hyundai Ioniq 5, Kia EV6, BYD Han, BYD Tang, Chevrolet Bolt, Volvo XC40 Recharge e muitos outros. Consulte o manual do veículo para confirmar.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Quanto tempo leva a recarga?<div class="faq-icon">+</div></button>
+                <div class="faq-a"><div class="faq-a-inner">Depende da bateria do veículo. Com 60 kW DC, um veículo de 60 kWh pode ir de 20% a 80% em aproximadamente 35 a 45 minutos. Veículos menores carregam ainda mais rápido.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Como funciona o pagamento?<div class="faq-icon">+</div></button>
+                <div class="faq-a"><div class="faq-a-inner">Pelo aplicativo, cartão de crédito, débito ou Pix. A sessão é iniciada pelo app e o valor é calculado com base no tempo ou na energia consumida, debitado automaticamente ao final.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Funciona de madrugada e nos feriados?<div class="faq-icon">+</div></button>
+                <div class="faq-a"><div class="faq-a-inner">Sim. O Elektro Charge opera 24 horas por dia, 7 dias por semana, incluindo feriados. Tudo é gerenciado pelo app e pelo sistema automatizado — sem necessidade de atendente presencial.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">O que faço se o carregador estiver ocupado?<div class="faq-icon">+</div></button>
+                <div class="faq-a"><div class="faq-a-inner">Pelo aplicativo você verifica disponibilidade em tempo real antes de sair de casa. Em caso de fila, o app notifica quando o ponto fica disponível.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Preciso de um aplicativo para usar?<div class="faq-icon">+</div></button>
+                <div class="faq-a"><div class="faq-a-inner">Sim. O app é a forma principal de usar o carregador — inicia a sessão, monitora em tempo real, envia notificações e realiza o pagamento. Simples e rápido.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bnf-divider"></div>
+
+<!-- ══ CTA ══ -->
+<section class="bnf-cta">
+    <div class="bnf-cta-inner" id="cta-inner">
+        <div class="bnf-cta-chip">
+            <iconify-icon icon="solar:map-point-bold-duotone"></iconify-icon>
+            Pinhais, Paraná
+        </div>
+        <div class="bnf-cta-addr">Av. Maringá, 2729 — Pinhais, PR</div>
+        <h2 class="bnf-cta-h2">Pronto para<br>carregar?</h2>
+        <p class="bnf-cta-p">Aberto agora. Sempre disponível.</p>
+        <div class="bnf-cta-line"></div>
+        <div class="bnf-cta-btns">
+            <a href="https://maps.app.goo.gl/rKWYBJzKLUBgqaQp8" target="_blank" rel="noopener" class="bnf-btn-g">
+                <iconify-icon icon="solar:map-arrow-right-bold-duotone"></iconify-icon>
+                Como Chegar
+            </a>
+            <a href="index.html" class="bnf-btn-o">
+                <iconify-icon icon="solar:arrow-left-bold"></iconify-icon>
+                Voltar ao Início
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-container">
+        <a href="index.html" class="footer-logo">
+            <div class="footer-logo-icon"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+            Elektro<span>.Charge</span>
+        </a>
+        <div class="footer-tagline">O futuro da mobilidade elétrica</div>
+        <div class="footer-divider"></div>
+        <div class="footer-meta">
+            <span>Av. Maringá, 2729</span>
+            <span class="footer-dot">&#x26A1;</span>
+            <span>Pinhais — PR</span>
+            <span class="footer-dot">&#x26A1;</span>
+            <span>24 horas, 7 dias por semana</span>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Elektro Charge. Todos os direitos reservados.</span>
+            <span>Tecnologia DC Fast Charging · 60 kW</span>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ── Scroll progress ──
+(function(){
+    var bar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', function(){
+        var p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+        bar.style.transform = 'scaleX(' + Math.min(p,1) + ')';
+    }, { passive: true });
+})();
+
+// ── Custom cursor ──
+(function(){
+    var cc = document.getElementById('custom-cursor');
+    if (!cc || window.matchMedia('(pointer: coarse)').matches) return;
+    document.addEventListener('mousemove', function(e){
+        cc.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+    }, { passive: true });
+    document.querySelectorAll('a,button,.cmp-card,.bnf-card,.tl-card,.faq-item').forEach(function(el){
+        el.addEventListener('mouseenter', function(){ cc.classList.add('is-hovering'); });
+        el.addEventListener('mouseleave', function(){ cc.classList.remove('is-hovering'); });
+    });
+})();
+
+// ── Navbar scroll ──
+(function(){
+    var nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', function(){
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+})();
+
+// ── Hero: counter + arc + reveal ──
+(function(){
+    var numEl = document.getElementById('hero-num');
+    var arc   = document.getElementById('dial-arc');
+    var circ  = 893; // 2π × 142
+    var obj   = { val: 0 };
+    gsap.to(obj, { val: 60, duration: 1.9, delay: 0.7, ease: 'power2.out',
+        onUpdate: function(){
+            numEl.textContent = Math.round(obj.val);
+            var len = (obj.val / 60 * circ * 0.75).toFixed(0);
+            arc.setAttribute('stroke-dasharray', len + ' ' + circ);
+        }
+    });
+    gsap.from('#hero-tag',   { opacity: 0, y: 16, duration: 0.6, delay: 0.2 });
+    gsap.from('#hero-h1',    { opacity: 0, y: 26, duration: 0.8, delay: 0.35, ease: 'power2.out' });
+    gsap.from('#hero-p',     { opacity: 0, y: 20, duration: 0.7, delay: 0.55, ease: 'power2.out' });
+    gsap.from('#hero-btns',  { opacity: 0, y: 18, duration: 0.6, delay: 0.75, ease: 'power2.out' });
+    gsap.from('#hero-right', { opacity: 0, scale: 0.93, duration: 1.1, delay: 0.45, ease: 'power2.out' });
+})();
+
+// ── Comparison cards ──
+(function(){
+    var done = false;
+    ScrollTrigger.create({ trigger: '#cmp-grid', start: 'top 78%', onEnter: function(){
+        if (done) return; done = true;
+        gsap.from('.cmp-card', { opacity: 0, y: 30, stagger: 0.1, duration: 0.75, ease: 'power2.out' });
+        document.querySelectorAll('.cmp-kw[data-count]').forEach(function(el){
+            var o = { v: 0 };
+            gsap.to(o, { v: +el.dataset.count, duration: 1.3, delay: 0.2, ease: 'power2.out',
+                onUpdate: function(){ el.textContent = Math.round(o.v); }
+            });
+        });
+    }});
+})();
+
+// ── Benefit cards ──
+ScrollTrigger.create({ trigger: '#bnf-grid', start: 'top 78%', once: true, onEnter: function(){
+    gsap.from('.bnf-card', { opacity: 0, y: 24, stagger: 0.08, duration: 0.65, ease: 'power2.out' });
+}});
+
+// ── Timeline ──
+(function(){
+    var fill = document.getElementById('tl-fill');
+    var dots = [0,1,2,3,4].map(function(i){ return document.getElementById('tl'+i); });
+    gsap.from('.tl-card', { opacity: 0, y: 18, stagger: 0.1, duration: 0.65, ease: 'power2.out',
+        scrollTrigger: { trigger: '#tl-wrap', start: 'top 78%' }
+    });
+    ScrollTrigger.create({ trigger: '#tl-wrap', start: 'top 58%', end: 'bottom 42%', scrub: 1,
+        onUpdate: function(self){
+            var p = self.progress;
+            fill.style.transform = 'scaleX(' + p + ')';
+            dots.forEach(function(d, i){ d.classList.toggle('lit', p >= i / (dots.length - 1)); });
+        }
+    });
+})();
+
+// ── FAQ accordion ──
+(function(){
+    document.querySelectorAll('.faq-item').forEach(function(item){
+        var btn   = item.querySelector('.faq-q');
+        var ans   = item.querySelector('.faq-a');
+        var inner = item.querySelector('.faq-a-inner');
+        btn.addEventListener('click', function(){
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(function(o){
+                o.classList.remove('open');
+                o.querySelector('.faq-a').style.height = '0';
+            });
+            if (!isOpen){ item.classList.add('open'); ans.style.height = inner.offsetHeight + 'px'; }
+        });
+    });
+    gsap.from('.faq-item', { opacity: 0, y: 18, stagger: 0.07, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: '#faq-list', start: 'top 80%' }
+    });
+})();
+
+// ── CTA ──
+gsap.from('#cta-inner', { opacity: 0, y: 30, duration: 0.8, ease: 'power2.out',
+    scrollTrigger: { trigger: '#cta-inner', start: 'top 82%' }
+});
+
+// ── Card flashlight ──
+document.querySelectorAll('.cmp-card, .bnf-card').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--cx', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+        card.style.setProperty('--cy', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
+});
+</script>
+</body>
+</html>

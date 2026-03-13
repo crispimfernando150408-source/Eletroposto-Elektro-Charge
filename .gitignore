@@ -1,0 +1,18 @@
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Arquivo de configuração local
+.claude/
+
+# Versões arquivadas / rascunhos
+_archive/
+index_eletroposto.html
+
+# Vídeo duplicado na raiz (versão correta está em assets/video/)
+/video_scrub.mp4
