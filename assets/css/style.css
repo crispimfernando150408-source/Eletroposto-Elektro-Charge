@@ -904,17 +904,54 @@
             .navbar { padding: 1rem 1.25rem; }
             .navbar-links { display: none; }
             .hero-cta { flex-direction: column; align-items: center; }
-            .bsec-cinema { min-height: 420px; }
-            .bsec-cinema-stats { position: relative; right: auto; top: auto; transform: none; width: 100%; border-radius: 0; border: none; border-top: 1px solid rgba(255,255,255,0.08); backdrop-filter: none; background: rgba(0,0,0,0.75); }
+
+            /* Cinema: imagem no topo (280px), stats absolutas abaixo */
+            .bsec-cinema { min-height: 580px; }
+            .bsec-cinema-img-full { inset: 0 0 auto 0; height: 280px; }
+            .bsec-cinema-overlay { inset: 0 0 auto 0; height: 280px; }
+            .bsec-visual-live { top: 1rem; left: 1rem; }
+            .bsec-visual-badge { bottom: auto; top: 220px; left: 1rem; }
+            .bsec-cinema-stats {
+                position: absolute;
+                top: 280px; right: 0; bottom: 0; left: 0;
+                width: 100%; transform: none;
+                border-radius: 0; border: none;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                backdrop-filter: none; background: rgba(0,0,0,0.92);
+                padding: 1.5rem 1.25rem;
+            }
+            .bsec-cinema-stats .bsec-stats-col-label { margin-bottom: 0.75rem; }
+            .bsec-cinema-stats .bsec-stat { padding: 0.75rem 0; }
+            .bsec-cinema-stats .bsec-stat-num { font-size: 1.6rem; }
+
             .bsec-cards { grid-template-columns: 1fr; }
             .bsec-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
             .bsec-card:last-child { border-bottom: none; }
             .bsec-split { grid-template-columns: 1fr; gap: 2.5rem; }
             .price-feature { grid-template-columns: 1fr; }
-            .price-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+            .price-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 2rem 1.5rem; }
+            .price-right { padding: 2rem 1.5rem; }
             .price-steps { grid-template-columns: 1fr; }
             .price-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
             .price-step:last-child { border-bottom: none; }
+            .glow-card { padding: 2rem 1.5rem; }
+            .glow-stats { grid-template-columns: repeat(3,1fr); gap: 0.5rem; }
+            .glow-stat-num { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .bsec-container { padding: 0 1rem; }
+            .bento-wrap { padding: 0 1rem; }
+            .price-container { padding: 0 1rem; }
+            .navbar-live-btn .nlb-text { display: none; }
+            .hero-content { padding: 80px 1rem 0; }
+            .bsec-cinema { min-height: 620px; }
+            .bsec-cinema-stats { top: 260px; }
+            .bsec-cinema-img-full { height: 260px; }
+            .bsec-cinema-overlay { height: 260px; }
+            .glow-stats { grid-template-columns: 1fr; }
+            .glow-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+            .glow-stat:last-child { border-bottom: none; }
         }
 
         /* ═══════════════════════ QUARTA DOBRA — VIDEO BG + GLOW ═══════════════════════ */
@@ -1752,7 +1789,6 @@
 @keyframes pulse-dot {
     0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
     50%      { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
-}
 }
 
 /* ══════════════════════════════════════════════════════════
