@@ -2044,3 +2044,14 @@ body::after {
 @media (max-width: 768px) {
     .glow-stats, .glow-divider { display: none !important; }
 }
+
+/* Mobile: mais espaço no texto dos cards (Tranquilidade que não tem preço) */
+@media (max-width: 768px) {
+    .bsec-card { padding: 2rem 2rem 2.5rem !important; }
+    .bsec-card-body { padding-right: 0.5rem; }
+}
+@media (max-width: 480px) {
+    .bsec-container { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    .bsec-card { padding: 2rem 2.25rem 2.75rem !important; }
+    .bsec-card-body { padding-right: 0.75rem; }
+}
