@@ -223,7 +223,7 @@ body::after {
    BENEFIT CARDS GRID
 ══════════════════════════════ */
 .bnf-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: start;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: stretch;
 }
 .bnf-card {
     background: rgba(255,255,255,.024); border: 1px solid rgba(255,255,255,.07);
@@ -258,11 +258,16 @@ body::after {
 ══════════════════════════════ */
 .tl-wrap { position: relative; overflow: visible; }
 
-/* Desktop: horizontal 5-col */
+/* Desktop: horizontal 5-col — stretch para alinhar todos os cards no mesmo topo */
 .tl-items {
     display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;
-    position: relative; align-items: start; overflow: visible;
+    position: relative; align-items: stretch; overflow: visible;
 }
+.tl-item {
+    display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    min-height: 0;
+}
+.tl-item .tl-card { flex: 1; min-height: 200px; display: flex; flex-direction: column; }
 .tl-items::before {
     content: ''; position: absolute; top: 7px; z-index: 0;
     left: calc(10% + .5rem); right: calc(10% + .5rem);
@@ -277,7 +282,6 @@ body::after {
     transform: scaleX(0); transform-origin: left center;
     transition: none;
 }
-.tl-item { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 .tl-dot {
     width: 14px; height: 14px; min-width: 14px; min-height: 14px; border-radius: 50%;
     border: 2px solid rgba(255,255,255,.35); background: #151515;
@@ -378,11 +382,11 @@ body::after {
 @media (max-width: 768px) {
     .cmp-grid  { grid-template-columns: 1fr; }
     .bnf-grid  { grid-template-columns: 1fr 1fr; }
-    .tl-items  { grid-template-columns: 1fr; }
+    .tl-items  { grid-template-columns: 1fr; align-items: stretch; }
     .tl-items::before, .tl-line-fill { display: none; }
     .tl-item   { flex-direction: row; align-items: flex-start; }
     .tl-dot    { margin-top: .3rem; flex-shrink: 0; }
-    .tl-card   { text-align: left; }
+    .tl-card   { text-align: left; min-height: 0; flex: none; }
 }
 @media (max-width: 480px) {
     .bnf-grid { grid-template-columns: 1fr; }
