@@ -195,7 +195,9 @@ body::after {
     border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     font-size: 1.3rem; color: rgba(255,255,255,.45); margin-bottom: 1.5rem;
+    flex-shrink: 0;
 }
+.cmp-unit { min-height: 2.8em; }
 .cmp-card--active .cmp-icon { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.25); color: #22c55e; }
 .cmp-kw {
     font-family: 'JetBrains Mono', monospace; font-size: 3rem; font-weight: 700;
@@ -223,7 +225,7 @@ body::after {
 .bnf-card {
     background: rgba(255,255,255,.024); border: 1px solid rgba(255,255,255,.07);
     border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;
-    display: flex; flex-direction: column;
+    display: flex; flex-direction: column; text-align: left;
     transition: border-color .25s, background .25s, transform .22s;
 }
 .bnf-card::before {
@@ -235,36 +237,36 @@ body::after {
     width: 2.75rem; height: 2.75rem; background: rgba(34,197,94,.08);
     border: 1px solid rgba(34,197,94,.2); border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.25rem; color: #22c55e; margin-bottom: 1.2rem;
+    font-size: 1.25rem; color: #22c55e; margin-bottom: 1.2rem; align-self: flex-start;
 }
 .bnf-card-num {
     font-family: 'JetBrains Mono', monospace; font-size: 2.4rem; font-weight: 700;
     letter-spacing: -.04em; line-height: 1;
     background: linear-gradient(135deg, #16a34a, #4ade80);
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: .45rem;
+    margin-bottom: .45rem; width: fit-content;
 }
-.bnf-card-rule { width: 24px; height: 2px; background: linear-gradient(to right, #22c55e, transparent); border-radius: 99px; margin-bottom: .85rem; }
+.bnf-card-rule { width: 24px; height: 2px; background: linear-gradient(to right, #22c55e, transparent); border-radius: 99px; margin-bottom: .85rem; align-self: flex-start; }
 .bnf-card-title { font-size: .88rem; font-weight: 600; letter-spacing: -.01em; margin-bottom: .45rem; }
 .bnf-card-desc  { font-size: .79rem; color: rgba(255,255,255,.4); line-height: 1.65; }
 
 /* ══════════════════════════════
    TIMELINE
 ══════════════════════════════ */
-.tl-wrap { position: relative; }
+.tl-wrap { position: relative; overflow: visible; }
 
 /* Desktop: horizontal 5-col */
 .tl-items {
     display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;
-    position: relative; align-items: start;
+    position: relative; align-items: start; overflow: visible;
 }
 .tl-items::before {
-    content: ''; position: absolute; top: 7px;
+    content: ''; position: absolute; top: 7px; z-index: 0;
     left: calc(10% + .5rem); right: calc(10% + .5rem);
     height: 1px; background: rgba(255,255,255,.07);
 }
 .tl-line-fill {
-    position: absolute; top: 7px; left: calc(10% + .5rem); right: calc(10% + .5rem);
+    position: absolute; top: 7px; left: calc(10% + .5rem); right: calc(10% + .5rem); z-index: 0;
     height: 1px;
     background: linear-gradient(to right, #16a34a, #4ade80);
     box-shadow: 0 0 8px rgba(34,197,94,.5);
@@ -274,16 +276,16 @@ body::after {
 }
 .tl-item { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 .tl-dot {
-    width: 14px; height: 14px; border-radius: 50%;
-    border: 2px solid rgba(255,255,255,.18); background: #000;
-    flex-shrink: 0; position: relative; z-index: 2;
+    width: 14px; height: 14px; min-width: 14px; min-height: 14px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.18); background: #0a0a0a;
+    flex-shrink: 0; position: relative; z-index: 3;
     transition: border-color .3s, box-shadow .3s;
 }
 .tl-dot.lit { border-color: #22c55e; box-shadow: 0 0 10px rgba(34,197,94,.7), 0 0 0 3px rgba(34,197,94,.1); }
 .tl-card {
     background: rgba(255,255,255,.024); border: 1px solid rgba(255,255,255,.07);
-    border-radius: 16px; padding: 1.35rem 1.25rem; text-align: center; width: 100%;
-    transition: border-color .3s;
+    border-radius: 16px; padding: 1.35rem 1.25rem; text-align: left; width: 100%;
+    transition: border-color .3s; box-sizing: border-box;
 }
 .tl-card:hover { border-color: rgba(255,255,255,.13); }
 .tl-min   { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: #22c55e; margin-bottom: .45rem; letter-spacing: -.02em; }
@@ -472,7 +474,7 @@ body::after {
         </div>
         <div class="cmp-grid" id="cmp-grid">
             <div class="cmp-card">
-                <div class="cmp-icon"><iconify-icon icon="solar:plug-circle-bold-duotone"></iconify-icon></div>
+                <div class="cmp-icon"><iconify-icon icon="solar:home-2-bold-duotone"></iconify-icon></div>
                 <div class="cmp-kw" data-count="3">0</div>
                 <div class="cmp-unit">kW · Tomada Doméstica</div>
                 <div class="cmp-name">Carga Residencial</div>
@@ -532,7 +534,7 @@ body::after {
                 <p class="bnf-card-desc">Sem horário de fechamento. Sem feriados. O Elektro Charge opera quando você precisa.</p>
             </div>
             <div class="bnf-card">
-                <div class="bnf-card-icon"><iconify-icon icon="solar:plug-bold-duotone"></iconify-icon></div>
+                <div class="bnf-card-icon"><iconify-icon icon="solar:plug-circle-bold-duotone"></iconify-icon></div>
                 <div class="bnf-card-num">CCS2</div>
                 <div class="bnf-card-rule"></div>
                 <div class="bnf-card-title">Conector Universal</div>
@@ -559,8 +561,8 @@ body::after {
 <div class="bnf-divider"></div>
 
 <!-- ══ TIMELINE ══ -->
-<section class="bnf-section bnf-section--dots">
-    <div class="bnf-wrap">
+<section class="bnf-section bnf-section--dots" id="timeline-section" style="overflow:visible;">
+    <div class="bnf-wrap" style="overflow:visible;">
         <div class="bnf-head">
             <div class="bnf-eye">Durante a Recarga</div>
             <h2 class="bnf-h2">40 minutos.<br><span class="g">Bem aproveitados.</span></h2>
