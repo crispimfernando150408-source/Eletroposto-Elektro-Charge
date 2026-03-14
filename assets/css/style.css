@@ -935,15 +935,24 @@
             .price-steps { grid-template-columns: 1fr; }
             .price-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
             .price-step:last-child { border-bottom: none; }
-            .glow-card { padding: 2rem 1.5rem; overflow: visible !important; }
+            .glow-card { padding: 2rem 1.25rem; overflow: visible !important; }
             .glow-card-inner { overflow: visible; }
-            .glow-big-num { font-size: 2.25rem; }
-            .glow-stats { grid-template-columns: repeat(3,1fr); gap: 0.5rem; }
-            .glow-stat { min-width: 0; padding: 0.9rem 0.5rem; }
-            .glow-stat-num { font-size: 0.95rem; white-space: nowrap; overflow: visible; text-overflow: unset; }
+            .glow-big-num { font-size: 2.25rem; margin-bottom: 0.3rem; }
+            .glow-sub-time { margin-bottom: 1rem; }
+            .glow-sub { margin-bottom: 1.25rem; }
+            .glow-divider { margin: 1.25rem 0 1.5rem; }
+            .glow-stats { grid-template-columns: repeat(3,1fr); gap: 0.25rem; margin-bottom: 1.5rem; overflow: visible; }
+            .glow-stat { min-width: 0; padding: 0.85rem 0.75rem; overflow: visible; text-align: center; }
+            .glow-stat-num { font-size: 0.85rem; white-space: nowrap; overflow: visible; text-overflow: unset; padding: 0 0.25rem; box-sizing: border-box; }
             .bsec-card { padding: 2rem 1.5rem 2.5rem; }
         }
 
+        @media (max-width: 600px) {
+            .glow-stats { grid-template-columns: 1fr; }
+            .glow-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 1rem 1.25rem; }
+            .glow-stat:last-child { border-bottom: none; }
+            .glow-stat-num { font-size: 1rem; }
+        }
         @media (max-width: 480px) {
             .bsec-container { padding: 0 1rem; }
             .bento-wrap { padding: 0 1rem; }
@@ -954,11 +963,14 @@
             .bsec-cinema-stats { top: 260px; }
             .bsec-cinema-img-full { height: 260px; }
             .bsec-cinema-overlay { height: 260px; }
-            .glow-stats { grid-template-columns: 1fr; }
-            .glow-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 1rem 1rem; }
+            .glow-stats { grid-template-columns: 1fr; gap: 0; margin-bottom: 1.5rem; }
+            .glow-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 1rem 1rem; overflow: visible; }
             .glow-stat:last-child { border-bottom: none; }
-            .glow-stat-num { font-size: 1.1rem; }
-            .glow-big-num { font-size: 2rem; }
+            .glow-stat-num { font-size: 1.05rem; padding: 0 0.2rem; }
+            .glow-big-num { font-size: 2rem; margin-bottom: 0.25rem; }
+            .glow-sub-time { margin-bottom: 0.85rem; }
+            .glow-sub { margin-bottom: 1rem; }
+            .glow-divider { margin: 1rem 0 1.25rem; }
             .bsec-card { padding-bottom: 2.75rem; }
         }
 
