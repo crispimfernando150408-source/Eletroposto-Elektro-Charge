@@ -945,7 +945,7 @@
             .glow-stats { grid-template-columns: repeat(3,1fr); gap: 0.25rem; margin-bottom: 1.5rem; overflow: visible; }
             .glow-stat { min-width: 0; padding: 0.85rem 0.75rem; overflow: visible; text-align: center; }
             .glow-stat-num { font-size: 0.85rem; white-space: nowrap; overflow: visible; text-overflow: unset; padding: 0 0.25rem; box-sizing: border-box; }
-            .bsec-card { padding: 2rem 1.5rem 2.5rem; }
+            .bsec-card { padding: 2rem 1.75rem 2.5rem; }
 
             /* Footer Instagram — mobile only */
             .footer-insta {
@@ -992,6 +992,7 @@
             .bsec-container { padding: 0 1rem; }
             .bento-wrap { padding: 0 1rem; }
             .price-container { padding: 0 1rem; }
+            .bsec-card { padding: 2rem 2rem 2.75rem; }
             .hero-content { padding: 80px 1rem 0; }
             .bsec-cinema { min-height: 620px; }
             .bsec-cinema-stats { top: 260px; }
