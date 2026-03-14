@@ -945,6 +945,40 @@
             .glow-stat { min-width: 0; padding: 0.85rem 0.75rem; overflow: visible; text-align: center; }
             .glow-stat-num { font-size: 0.85rem; white-space: nowrap; overflow: visible; text-overflow: unset; padding: 0 0.25rem; box-sizing: border-box; }
             .bsec-card { padding: 2rem 1.5rem 2.5rem; }
+
+            /* Footer Instagram — mobile only */
+            .footer-insta {
+                display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+                width: 100%; max-width: 280px; margin: 0.5rem auto 0;
+                padding: 1.25rem 1.5rem;
+                background: rgba(255,255,255,0.025);
+                border: 1px solid rgba(255,255,255,0.07);
+                border-radius: 14px;
+                text-decoration: none;
+                transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+            }
+            .footer-insta:active { transform: scale(0.98); }
+            .footer-insta:hover {
+                background: rgba(34,197,94,0.07);
+                border-color: rgba(34,197,94,0.3);
+                box-shadow: 0 0 24px rgba(34,197,94,0.1);
+            }
+            .footer-insta-icon {
+                display: flex; align-items: center; justify-content: center;
+                width: 44px; height: 44px;
+                background: linear-gradient(145deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05));
+                border: 1px solid rgba(34,197,94,0.3);
+                border-radius: 12px;
+            }
+            .footer-insta-icon iconify-icon { font-size: 1.35rem; }
+            .footer-insta-handle {
+                font-size: 0.95rem; font-weight: 600; color: #fff;
+                letter-spacing: -0.02em;
+            }
+            .footer-insta-label {
+                font-size: 0.68rem; color: rgba(255,255,255,0.45);
+                letter-spacing: 0.04em; text-transform: uppercase;
+            }
         }
 
         @media (max-width: 600px) {
@@ -957,7 +991,6 @@
             .bsec-container { padding: 0 1rem; }
             .bento-wrap { padding: 0 1rem; }
             .price-container { padding: 0 1rem; }
-            .navbar-live-btn .nlb-text { display: none; }
             .hero-content { padding: 80px 1rem 0; }
             .bsec-cinema { min-height: 620px; }
             .bsec-cinema-stats { top: 260px; }
@@ -1354,6 +1387,9 @@
             font-size: 0.7rem; color: rgba(255,255,255,0.2);
         }
         .footer-dot { color: rgba(34,197,94,0.35); }
+        .footer-insta {
+            display: none;
+        }
         .footer-bottom {
             display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center;
             font-size: 0.62rem; color: rgba(255,255,255,0.12); margin-top: 1.5rem;
