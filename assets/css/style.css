@@ -937,6 +937,7 @@
             .price-step:last-child { border-bottom: none; }
             .glow-card { padding: 2rem 1.25rem; overflow: visible !important; }
             .glow-card-inner { overflow: visible; }
+            .glow-stats, .glow-divider { display: none; }
             .glow-big-num { font-size: 2.25rem; margin-bottom: 0.3rem; }
             .glow-sub-time { margin-bottom: 1rem; }
             .glow-sub { margin-bottom: 1.25rem; }
